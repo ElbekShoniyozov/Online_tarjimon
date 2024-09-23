@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dictionary</title>
+    <link rel="stylesheet" href="{% static '/css/front.css' %}">
+</head>
+<body>
+    <div class="container">
+        <form method="GET" action="/">
+            {% csrf_token %}
+            <h1>Inglizcha-O'zbekcha, O'zbekcha-Inglizcha</h1>
+            <input type="text" name="text" value="" placeholder="Enter text to translate...">
+            <button>Search</button>
+        </form>
+        <section class="results">
+            <div class="table">
+                <div class="row header">
+                    <div class="column">Natija</div>
+                </div>
+                <div class="row">
+                    <div class="column">Inglizcha</div>
+                    <div class="column">O'zbekcha</div>
+                </div>
+                {% if natija%}
+                {% for item in natija %}
+                <div class="row">
+                            <div class="column">{{item.ingilizcha}}</div>
+                            <div class="column">{{item.uzbekcha}}</div>
+                </div>
+                {% endfor %}
+                {% endif %}
+            </div>
+        </section>
+    </div>
+</body>
+</html>
